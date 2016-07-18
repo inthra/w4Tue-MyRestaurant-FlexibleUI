@@ -35,11 +35,9 @@ public class FirebaseRestaurantViewHolder extends RecyclerView.ViewHolder implem
         super(itemView);
         mView = itemView;
         mContext = itemView.getContext();
-        itemView.setOnClickListener(this);
     }
 
     public void bindRestaurant(Restaurant restaurant) {
-        ImageView restaurantImageView = (ImageView) mView.findViewById(R.id.restaurantImageView);
         TextView nameTextView = (TextView) mView.findViewById(R.id.restaurantNameTextView);
         TextView categoryTextView = (TextView) mView.findViewById(R.id.categoryTextView);
         TextView ratingTextView = (TextView) mView.findViewById(R.id.ratingTextView);
@@ -71,7 +69,7 @@ public class FirebaseRestaurantViewHolder extends RecyclerView.ViewHolder implem
                 int itemPosition = getLayoutPosition();
 
                 Intent intent = new Intent(mContext, RestaurantDetailActivity.class);
-                intent.putExtra("position", itemPosition + "");
+                intent.putExtra("position", itemPosition);
                 intent.putExtra("restaurants", Parcels.wrap(restaurants));
 
                 mContext.startActivity(intent);
