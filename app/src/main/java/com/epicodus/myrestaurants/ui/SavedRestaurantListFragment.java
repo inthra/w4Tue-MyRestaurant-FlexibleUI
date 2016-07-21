@@ -34,12 +34,9 @@ public class SavedRestaurantListFragment extends Fragment implements OnStartDrag
     private FirebaseRestaurantListAdapter mFirebaseAdapter;
     private ItemTouchHelper mItemTouchHelper;
 
-
-
     public SavedRestaurantListFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,6 +65,14 @@ public class SavedRestaurantListFragment extends Fragment implements OnStartDrag
         //In line below, we change 'this' to 'getActivity()' because fragments do not have own context:
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mFirebaseAdapter);
+
+        mFirebaseAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                mFirebaseAdapter.notifyDataSetChanged();
+            }
+        });
 
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mFirebaseAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);

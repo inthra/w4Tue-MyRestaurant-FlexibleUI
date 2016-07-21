@@ -24,7 +24,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class SavedRestaurantListActivity extends AppCompatActivity {
-    private DatabaseReference mRestaurantReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
